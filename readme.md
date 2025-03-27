@@ -1,95 +1,46 @@
-# node/typescript setup
+# Console Battleships
 
-We begin with a
+Console Battleships game implemented using a Node/TypeScript/Jest setup.
 
-```
-> npm init -y
-```
+## Spec
 
-and install pkgs:
+Loosely based on the [Battleships kata spec](https://www.codurance.com/katas/battleships) over at Codurance.
 
-- typescript
-- ts-node
-- @types/node
+## Motivation
 
-## tsconfig.json
+I first looked at this kata with a view to kicking the types with bun v2 and its ability transpile raw TS files, side stepping the **tsc** setup.
 
-install @tsconfig/node18
-
-and create the project tsconfig.json file.
-
-**NB** exclude "\*.test.ts" files; these will be dealt with in jest section.
-
-## eslint
-
-to create eslint config...
+Initially, the ease of running TS files was a dream:
 
 ```
-> npm init @eslint/config@latest
+  > bun index.ts
 ```
 
-installs these pkgs for us:
+...job done.
 
-- eslint
-- @eslint/js
-- globals
-- typescript-eslint
+The data structure was straightforward. However:
 
-**and**, spread the tseslint.configs.recommended settings.
+- writing tests using the "bun:test" package? Yeah, logical.
+- crack opening JS Debug Terminal to follow logic? Nope.
 
-## prettier
+After a deeper dive into Node/TypeScript project setup ([See resulting template repo here](https://github.com/orogeny/ts-node-template)) than intended, I'm back to give the template repo a trial run.
 
-Then we want to add:
+## Stack
 
-- eslint-config-prettier
-- prettier
+TypeScript plus:
 
-## eslint.config file
+- Node
+- EsLint
+- Jest
 
-take a look at the eslint config file...
+# Installation
 
-1. add {ignores: ["dist/**"]} to top (node_modules **should/is** be ignored by default).
+1. clone/fork the repo
 
-2. add in the rules for using underscore as a placeholder
+2. `> cd <repo-folder>`
 
-3. import the eslint-config-prettier package
+3. `> npm install`
 
-```
-import prettierConfig from "eslint-config-prettier";
-```
+4. `> npm run start`
 
-and add to the end of eslint's config file
-
-```
-  ...tseslint.configs.recommended,
-  prettierConfig
-```
-
-## Jest
-
-Jest currently has deprecated dependencies on `glob v7` and its child dependency `inflight v1`.
-
-1. add `overrides` section to package.json to install `glob v9`,
-
-2. install pkgs
-
-- @types/jest
-- jest
-- ts-jest
-
-3. add the `jest` presets value...
-
-```
-  "overrides": {
-    "glob": "^9"
-  },
-  "jest": {
-    "preset": "ts-jest"
-  }
-```
-
-## rounding off
-
-Don't forget to delete the .ts files in /src.
-
-Don't forget to add an empty .prettierrc file to trigger prettier
+Welcome to the retro world of "You sank my battleship!"
