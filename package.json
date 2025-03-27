@@ -1,0 +1,37 @@
+{
+  "name": "ts-node-template",
+  "author": "",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "start": "ts-node ./src/index.ts",
+    "build": "tsc",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "lint": "eslint"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.23.0",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.13.13",
+    "eslint": "^9.23.0",
+    "eslint-config-prettier": "^10.1.1",
+    "globals": "^16.0.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.5.3",
+    "ts-jest": "^29.3.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2",
+    "typescript-eslint": "^8.28.0"
+  },
+  "overrides": {
+    "glob": "^9"
+  },
+  "jest": {
+    "preset": "ts-jest"
+  }
+}
