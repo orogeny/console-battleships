@@ -36,5 +36,9 @@ function placeShip(location: Placement, length: number) {
   return Array.from({ length }, (_, i) => [x, y + i]);
 }
 
-export { convertCoords, convertIndex, placeShip };
+function parseCoords(text: string) {
+  return text.split(/(?:\D+)/).map((t) => parseInt(t, 10)) as Coords;
+}
+
+export { convertCoords, convertIndex, parseCoords, placeShip };
 export type { Coords, Placement };
