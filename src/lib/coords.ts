@@ -10,5 +10,16 @@ function convertCoords(dimensions: Coords) {
   };
 }
 
+function convertIndex(dimensions: Coords) {
+  const [width] = dimensions;
+
+  return function (index: number) {
+    const x = index % width;
+    const y = Math.floor(index / width);
+
+    return [x, y];
+  };
+}
+
+export { convertCoords, convertIndex };
 export type { Coords };
-export { convertCoords };

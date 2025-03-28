@@ -1,4 +1,4 @@
-import { convertCoords, type Coords } from "./coords";
+import { convertCoords, convertIndex, type Coords } from "./coords";
 
 describe("coords tuple", () => {
   test("should create coords", () => {
@@ -27,5 +27,18 @@ describe("convert coords to index", () => {
     [[3, 4], 19],
   ])(`should convert coords(%o) -> index: %i`, (coords: Coords, expected) => {
     expect(toIndex(coords)).toBe(expected);
+  });
+});
+
+describe("convert index to coords", () => {
+  const dimensions: Coords = [5, 10];
+  const toCoords = convertIndex(dimensions);
+
+  test.each([
+    [0, [0, 0]],
+    [22, [2, 4]],
+    [49, [4, 9]],
+  ])(`should convert index: %i -> %o`, (index, expected: Coords) => {
+    expect(toCoords(index)).toEqual(expected);
   });
 });
