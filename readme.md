@@ -37,7 +37,7 @@ TypeScript plus:
 
 1. clone/fork the repo
 
-2. `> cd <repo-folder>`
+2. `> cd console-battleships`
 
 3. `> npm install`
 
