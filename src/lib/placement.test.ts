@@ -1,4 +1,4 @@
-import { Placement, placeShip } from "./coords";
+import { Placement, placeShip } from "./placement";
 
 describe("place ships", () => {
   test("should place short ship horizontally", () => {
