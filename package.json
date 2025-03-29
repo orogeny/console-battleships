@@ -32,6 +32,7 @@
     "glob": "^9"
   },
   "jest": {
-    "preset": "ts-jest"
+    "preset": "ts-jest",
+    "verbose": true
   }
 }
