@@ -55,6 +55,19 @@ describe("parse coords", () => {
     ["2x3", [2, 3]],
     ["5 x 4", [5, 4]],
   ])(`should parse "%s" to coordinates %o`, (text, expected: Coords) => {
-    expect(parseCoords(text)).toEqual(expected);
+    const { data, error } = parseCoords(text);
+
+    expect(error).toBeNull();
+    expect(data).toEqual(expected);
   });
+
+  test.each([[""], ["1"], ["1 2 3"], ["a 1"], ["1 b"]])(
+    `should fail parsing coordinates from "%s"`,
+    (text) => {
+      const { data, error } = parseCoords(text);
+
+      expect(data).toBeNull();
+      expect(error).toBeInstanceOf(Error);
+    },
+  );
 });
