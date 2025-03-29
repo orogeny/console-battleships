@@ -1,4 +1,9 @@
-import { convertCoords, convertIndex, type Coords } from "./coords";
+import {
+  convertCoords,
+  convertIndex,
+  parseCoords,
+  type Coords,
+} from "./coords";
 
 describe("coords tuple", () => {
   test("should create coords", () => {
@@ -41,4 +46,28 @@ describe("convert index to coords", () => {
   ])(`should convert index: %i -> %o`, (index, expected: Coords) => {
     expect(toCoords(index)).toEqual(expected);
   });
+});
+
+describe("parse coords", () => {
+  test.each([
+    ["1 2", [1, 2]],
+    ["10,3", [10, 3]],
+    ["2x3", [2, 3]],
+    ["5 x 4", [5, 4]],
+  ])(`should parse "%s" to coordinates %o`, (text, expected: Coords) => {
+    const { data, error } = parseCoords(text);
+
+    expect(error).toBeNull();
+    expect(data).toEqual(expected);
+  });
+
+  test.each([[""], ["1"], ["1 2 3"], ["a 1"], ["1 b"]])(
+    `should fail parsing coordinates from "%s"`,
+    (text) => {
+      const { data, error } = parseCoords(text);
+
+      expect(data).toBeNull();
+      expect(error).toBeInstanceOf(Error);
+    },
+  );
 });
