@@ -6,7 +6,7 @@ type Placement = {
   orientation: "h" | "v";
 };
 
-function placeShip(location: Placement, length: number): Coords[] {
+function positionShip(location: Placement, length: number): Coords[] {
   const [x, y] = location.position;
 
   if (location.orientation === "h") {
@@ -42,5 +42,5 @@ function parsePlacement(text: string): Result<Placement, Error> {
   };
 }
 
-export { parsePlacement, placeShip };
+export { parsePlacement, positionShip };
 export type { Placement };
