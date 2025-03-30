@@ -6,7 +6,7 @@ type Placement = {
   orientation: "h" | "v";
 };
 
-function placeShip(location: Placement, length: number) {
+function placeShip(location: Placement, length: number): Coords[] {
   const [x, y] = location.position;
 
   if (location.orientation === "h") {
