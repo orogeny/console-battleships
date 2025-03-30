@@ -1,5 +1,5 @@
 import { Coords } from "../lib/coords";
-import { parsePlacement, placeShip } from "../lib/placement";
+import { parsePlacement, positionShip } from "../lib/placement";
 import { Result } from "../lib/result";
 import { askQuestion } from "../ui/ask_question";
 
@@ -17,7 +17,7 @@ async function placeVessel(
 
   if (unparsed) return { data: null, error: unparsed };
 
-  const squares = placeShip(placement, length);
+  const squares = positionShip(placement, length);
 
   return { data: squares, error: null };
 }
