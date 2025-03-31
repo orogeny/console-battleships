@@ -1,14 +1,18 @@
+import { Coords } from "../lib/coords";
+import { VESSELS } from "../ships";
 import { askQuestion } from "../ui/ask_question";
+import { placeFleet } from "./place_fleet";
 
 type Player = {
   name: string;
+  fleet: Map<string, Set<number>>;
 };
 
 function english(n: number) {
   return n === 0 ? "first" : "second";
 }
 
-async function setupPlayer(playerNumber: number) {
+async function setupPlayer(dimensions: Coords, playerNumber: number) {
   const player = {} as Player;
 
   while (player.name === undefined) {
@@ -24,6 +28,8 @@ async function setupPlayer(playerNumber: number) {
       player.name = data;
     }
   }
+
+  player.fleet = await placeFleet(dimensions, VESSELS);
 
   return player;
 }
