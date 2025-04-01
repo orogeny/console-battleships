@@ -15,7 +15,7 @@ function convertCoords(dimensions: Coords) {
 function convertIndex(dimensions: Coords) {
   const [width] = dimensions;
 
-  return function (index: number) {
+  return function (index: number): Coords {
     const x = index % width;
     const y = Math.floor(index / width);
 

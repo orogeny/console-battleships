@@ -12,5 +12,7 @@ describe("setup game", () => {
     const game = await setupGame();
 
     expect(game.dimensions).toEqual([4, 4]);
+    expect(game.toIndex([1, 2])).toBe(9);
+    expect(game.toCoords(9)).toEqual([1, 2]);
   });
 });
