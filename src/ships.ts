@@ -8,6 +8,8 @@ type Ship = (typeof SHIPS)[number]["type"];
 
 type Vessel = { type: Ship; name: string; length: number };
 
+type Fleet = Map<string, Set<number>>;
+
 const VESSELS: Vessel[] = SHIPS.flatMap(({ type, quantity, length }) =>
   Array.from({ length: quantity }, (_, i) => ({
     type,
@@ -17,4 +19,4 @@ const VESSELS: Vessel[] = SHIPS.flatMap(({ type, quantity, length }) =>
 );
 
 export { SHIPS, VESSELS };
-export type { Ship, Vessel };
+export type { Fleet, Ship, Vessel };
