@@ -29,7 +29,7 @@ describe("setup game", () => {
       ["Gunship 4", new Set([12])],
     ]);
 
-    mockGetDimensions.mockResolvedValueOnce({ data: [4, 4], error: null });
+    mockGetDimensions.mockResolvedValueOnce([4, 4]);
     mockSetupPlayer
       .mockResolvedValueOnce({
         name: "Bert",

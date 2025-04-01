@@ -1,28 +1,18 @@
-import { Coords, parseCoords } from "../lib/coords";
-import { Result } from "../lib/result";
-import { askQuestion } from "../ui/ask_question";
+import { inputCoords } from "../ui/input_coords";
 
-async function getDimensions(): Promise<Result<Coords, Error>> {
-  const { data, error } = await askQuestion(
-    "Enter board dimensions (min 4 x 4):",
-  );
+async function getDimensions() {
+  while (true) {
+    const { data, error } = await inputCoords(
+      "Enter board dimensions (min 4 x 4):",
+    );
 
-  if (error) return { data: null, error };
+    if (data) {
+      const [width, height] = data;
 
-  const { data: coords, error: unparsed } = parseCoords(data);
-
-  if (unparsed) return { data: null, error: unparsed };
-
-  const [width, height] = coords;
-
-  if (width < 4 || height < 4) {
-    return {
-      data: null,
-      error: new Error("Board must be min of 4 x 4 squares"),
-    };
+      if (width >= 4 && height >= 4) return data;
+      else console.log("Oops... Board must be min 4 x 4 squares");
+    } else console.log(`Oops... ${error.message}`);
   }
-
-  return { data: coords, error: null };
 }
 
 export { getDimensions };
