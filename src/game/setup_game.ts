@@ -30,6 +30,7 @@ async function setupGame() {
   const player1 = await setupPlayer(game.dimensions, 1);
 
   game.players = [player0.name, player1.name];
+  game.fleets = [player0.fleet, player1.fleet];
 
   return game;
 }

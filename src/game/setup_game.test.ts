@@ -48,5 +48,7 @@ describe("setup game", () => {
     expect(game.toCoords(9)).toEqual([1, 2]);
 
     expect(game.players).toEqual(["Bert", "Ernie"]);
+
+    expect(game.fleets).toEqual([fleet0, fleet1]);
   });
 });
