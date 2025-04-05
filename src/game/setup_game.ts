@@ -14,23 +14,18 @@ type Game = {
 async function setupGame() {
   const game = {} as Game;
 
-  while (game.dimensions === undefined) {
-    const { data: dimensions, error } = await getDimensions();
-
-    if (error) {
-      console.log(`Oops... ${error.message}`);
-    } else {
-      game.dimensions = dimensions;
-      game.toCoords = convertIndex(dimensions);
-      game.toIndex = convertCoords(dimensions);
-    }
-  }
+  const dimensions = await getDimensions();
 
   const player0 = await setupPlayer(game.dimensions, 0);
   const player1 = await setupPlayer(game.dimensions, 1);
 
+  game.dimensions = dimensions;
+
   game.players = [player0.name, player1.name];
   game.fleets = [player0.fleet, player1.fleet];
+
+  game.toCoords = convertIndex(dimensions);
+  game.toIndex = convertCoords(dimensions);
 
   return game;
 }
